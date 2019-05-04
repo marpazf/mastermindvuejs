@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <!--<link rel="stylesheet" href="css/animate.css" />-->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+
+  <div id="main" class="container">
+    <div class="titulo">Mastermind</div>
+
+    <div class="game">
+      <div class="row" v-for="n in maxRows">
+        <div class="marbles">
+          <template v-for="m in maxColumns">
+            <div class="marble" v-bind:class="marbleColor[n-1][m-1]">
+            </div>
+          </template>
+        </div>
+        <div class="hints">
+          <template v-for="m in maxColumns">
+            <div class="hint" v-bind:class="hints[n-1][m-1]">
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <div class="colors">
+      <div class="marbles-colors">
+        <template v-for="(color, index) in colors">
+          <div class="marble-colors" 
+            v-bind:class="color" 
+            v-on:click="setInputColor" 
+            :data-color="index">
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <div class="controles">
+      <div class="computer" v-on:click="restart()"><i class="fa fa-refresh"></i></div>
+      <div class="message">{{message}}</div>
+      <div class="check" v-on:click="checkInput()"><i class="fa fa-check"></i></div>
+    </div>
+
+    <div class="marbles-solution hide">
+      <template v-for="n in maxColumns">
+        <div class="marble-solution" v-bind:class="marbleSolution[n-1]">
+        </div>
+      </template>
+    </div>
+
+  </div>
+
+  <!--<script src="https://code.jquery.com/jquery-3.1.0.js"></script>-->
+  <script src="https://unpkg.com/vue"></script>
+  <script src="js/global.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
